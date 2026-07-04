@@ -1,0 +1,24 @@
+app.post("/books", (req, res) => {
+
+    const { title, author } = req.body;
+
+    if (!title || !author) {
+        return res.status(400).json({
+            message: "Title and Author are required"
+        });
+    }
+
+    const newBook = {
+        id: books.length + 1,
+        title,
+        author
+    };
+
+    books.push(newBook);
+
+    res.status(201).json({
+        message: "Book Added Successfully",
+        book: newBook
+    });
+
+});

@@ -1,0 +1,21 @@
+app.put("/books/:id", (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    const book = books.find(book => book.id === id);
+
+    if (!book) {
+        return res.status(404).json({
+            message: "Book not found"
+        });
+    }
+
+    book.title = req.body.title;
+    book.author = req.body.author;
+
+    res.status(200).json({
+        message: "Book Updated Successfully",
+        book
+    });
+
+});

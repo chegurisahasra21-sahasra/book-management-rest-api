@@ -1,0 +1,20 @@
+app.delete("/books/:id", (req, res) => {
+
+    const id = parseInt(req.params.id);
+
+    const index = books.findIndex(book => book.id === id);
+
+    if (index === -1) {
+        return res.status(404).json({
+            message: "Book not found"
+        });
+    }
+
+    const deletedBook = books.splice(index, 1);
+
+    res.status(200).json({
+        message: "Book Deleted Successfully",
+        deletedBook
+    });
+
+});
